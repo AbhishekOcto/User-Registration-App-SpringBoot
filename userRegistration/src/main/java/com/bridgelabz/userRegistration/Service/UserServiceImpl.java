@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements IUserService{
     @Autowired
@@ -26,4 +29,15 @@ public class UserServiceImpl implements IUserService{
         User user = modelMapper.map(userDTO, User.class);
         return userRepository.save(user);
     }
+
+    @Override
+    public Optional<User> getUserById(long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public List<User> getUserData(){
+        return userRepository.findAll();
+    }
+
 }
